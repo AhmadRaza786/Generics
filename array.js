@@ -1,4 +1,4 @@
-Array.prototype.advancedSort = function (dataType , order , object_props) {
+Array.prototype.generic_sort = function (dataType , order , object_props) {
   if(this.length > 1){
     var list = [];
       switch(dataType){
