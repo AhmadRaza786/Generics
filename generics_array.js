@@ -1,29 +1,30 @@
-Array.prototype.generic_sort = function (dataType , order , object_props) {
+Array.prototype.generics_sort = function (dataType , order = "asc" , object_props) {
   if(this.length > 1){
     let list = [];
       switch(dataType){
         case "string" : {
-          list = !order || order === "asc" ? stringSort(this, true, object_props) :
+          list = order === "asc" ? stringSort(this, true, object_props) :
             order === "desc" ? stringSort(this, false, object_props) : this;
           break;
         }
         case "number" : {
-          list = !order || order === "asc" ? numberSort(this, true, object_props) :
+          list = order === "asc" ? numberSort(this, true, object_props) :
             order === "desc" ? numberSort(this, false, object_props) : this;
           break;
         }
         case "date" : {
-          list = !order || order === "asc" ? dateSort(this, true, object_props) :
+          list = order === "asc" ? dateSort(this, true, object_props) :
             order === "desc" ? dateSort(this, false, object_props) : this;
           break;
         }
         default : {
-
+          list = this;
           break;
         }
       }
+      return list;
   }
-  return list;
+  return this;
 };
 
 
@@ -74,8 +75,7 @@ function selectObjectProp(objectValue , props) {
     return objectValue;
   let count = 0;
   while (props[count]){
-    objectValue = objectValue[props[count]];
-    count++;
+    objectValue = objectValue[props[count++]];
   }
   return objectValue;
 }
